@@ -6,25 +6,22 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\User $model */
 
-$this->title = $model->id;
+$this->title = 'Dados de Usuário';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+<style>
+    body {
+        background-color: #F3F3F3 !important;
+    }
+</style>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+     <h2 class="mb-4">
+        <?= Html::a('<i class="fas fa-chevron-left"></i>', ['index'], ['class' => 'btn btn-link text-dark me-2', 'title' => 'Voltar para Usuários']) ?>
+        <?= Html::encode($this->title) ?>
+    </h2>
 
     <?= DetailView::widget([
         'model' => $model,

@@ -5,7 +5,6 @@ namespace app\controllers;
 class HomeController extends \yii\web\Controller
 {
 
-    // Requer autenticação para acessar essa página
     public function behaviors()
     {
         return [
@@ -16,7 +15,7 @@ class HomeController extends \yii\web\Controller
                     [
                         'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'], // Apenas usuários logados
+                        'roles' => ['@'],
                     ],
                 ],
             ],

@@ -38,10 +38,10 @@ document.getElementById("toggleMenu").addEventListener("click", function() {
 
     if (menu.classList.contains("show")) {
         menu.classList.remove("show");
-        icon.innerHTML = "&#9660;"; // Ícone de fechado
+        icon.innerHTML = "&#9660;"; 
     } else {
         menu.classList.add("show");
-        icon.innerHTML = "&#9650;"; // Ícone de aberto
+        icon.innerHTML = "&#9650;"; 
     }
 });
 </script>
