@@ -8,44 +8,48 @@
 
 Projeto desenvolvido para o processo seletivo do cargo de desenvolvedor full stack do instituto Conecthus
 
+ ![login](assets/login.png)
 
-Estrutura de diretórios
+
+Estrutura de diretórios e arquivos criados
 -------------------
 
       assets/              
       commands/           
       config/            
       controllers/        
-                AuthController.php      Controla login e autenticacao
-                HomeController.php      Controla home 
-                SiteController.php      Gerado automaticamento (Nao utilizado)
-                UserController.php      Controlar informacoes de usuarios(Listagem, create, update, delete)
+                AuthController.php      
+                HomeController.php       
+                SiteController.php      
+                UserController.php     
       mail/                
-      models/             Contem as classes de models 
+      models/   
+                User.php
+                UserSearch.php           
       runtime/            
       tests/              
       vendor/             
-      views/              Contem arquivos de views para a aplicação
-      web/                Contem alguns scripts js e css usados na aplicação
+      views/              
+                auth
+                home
+                user
+                layouts
+      web/             
 
 
 Requisitos para rodar o projeto
 ------------
 
-* PHP 7.4.
-* MYSQL
+* PHP 7
+* MariaDB ou MYSQL
 * Composer
 * Yii Framework
-
-Composer
-
-Para instalar o composer siga as instrucoes em https://getcomposer.org/download/
+* MYSQL Workbench ou outra ferramenta como o Dbeaver por exemplo
 
 Instruções para rodar a aplicação
 ------------
 
 ### Instalando dependencias
-
 
 Dentro da raiz do projeto execute o seguinte comando para instalar as dependencias
 
@@ -53,11 +57,19 @@ Dentro da raiz do projeto execute o seguinte comando para instalar as dependenci
 composer install
 ~~~
 
-### Banco de dados
+### Criando banco de dados
+Necessario criar o banco de dados manualmente, para isso rode o seguinte comando no seu MYSQL workbench ou qualquer outra ferramenta
 
-Edite o arquivo `config/db.php` com suas informacoes de conexao de banco:
+~~~
+CREATE DATABASE wenlock
+~~~
 
-Atualmente ele esta assim (caso sua senha, seu usuario ou banco seja diferente altere para o seu)
+
+### Configurando conexão com o banco de dados
+
+Após criar o banco de dados, edite o arquivo `config/db.php` com suas informações de conexão:
+
+Eu ja deixei configurado ( mas caso sua senha, seu usuario ou banco seja diferente altere para o seu)
  
 ```php
 return [
@@ -70,35 +82,20 @@ return [
 ```
 ### Rodando as migrations
 
-
-Para criar a tabela que precisaremos utilizar no projeto execute:
+Para criar a tabela user que precisaremos utilizar no projeto execute na raiz do projeto:
 
 ~~~
 php yii migrate
 ~~~
 
+### Rodando a aplicação
 
-### Inicialize o projeto
-
-Isso configura o ambiente e cria arquivos necessários.
+Para rodar a aplicação basta executar na raiz de seu projeto
 ~~~
-php init
-~~~
-
-Você verá algo como 
-
-~~~
-Which environment do you want the application to be initialized in?
-
-  [0] Development
-  [1] Production
-
-Escolha o [0]:
+php yii serve
 ~~~
 
-
-
-Voce pode acessar a aplicacao que esta disponivel em 
+E por fim você pode acessar a aplicacao que estará disponivel em 
 ~~~
 http://localhost:8080
 ~~~
