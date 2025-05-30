@@ -108,7 +108,7 @@ $tipoUsuario = Yii::$app->user->identity->tipo;
 
             <?php if (empty($dataProvider->models)): ?>
                 <div class="text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 400px; margin-top: 100px;">
-                    <img src="<?= Yii::getAlias('@web') ?>/assets/nothing-user.svg" alt="no result" class="img-fluid mb-4" style="height: 25vh;">
+                    <img src="<?= Yii::getAlias('@web') ?>/images/nothing-user.svg" alt="no result" class="img-fluid mb-4" style="height: 25vh;">
                     <h2>Nenhum resultado encontrado.</h2>
                     <p>Não foi possível achar nenhum resultado para sua busca.<br>Tente refazer a pesquisa para encontrar o que busca.</p>
                 </div>

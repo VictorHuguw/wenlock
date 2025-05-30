@@ -12,7 +12,7 @@ $this->title = 'Home';
         <p><?= date('d, F Y') ?></p>
 
         <div class="text-center mt-4">
-            <img src="<?= Yii::getAlias('@web') ?>/assets/welcome.svg" alt="Welcome" class="img-fluid" style="45vh">
+            <img src="<?= Yii::getAlias('@web') ?>/images/welcome.svg" alt="Welcome" class="img-fluid" style="45vh">
 
             <div class="mt-3 mb-lg-5">
                 <button class="btn btn-outline-primary btn-lg" style="width: 50vh;height: 6vh;">Bem-vindo ao WenLock!</button>
