@@ -14,7 +14,7 @@ Projeto desenvolvido para o processo seletivo do cargo de desenvolvedor full sta
 
  **Observações:**
 * Para entrar na aplicação é necessario criar uma conta de usuario, bastar clicar em 'Criar nova conta'
-Requisitos para rodar o projeto
+
 * Não foi possivel deixar algumas coisas exatamente iguais visualmente como mostra no adobe xd pois alguns dos componentes utilizados são do material design e a integração de Material Design é um pouco mais complexa e fragmentada no ecossistema Yii2 comparado ao Bootstrap e precisaria de um pouco mais de tempo.
 
 <br>
