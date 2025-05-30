@@ -38,12 +38,9 @@ class AuthController extends Controller
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Usuário criado com sucesso.');
                 return $this->redirect(['login']);
-            } else {
-                echo '<pre>';
-                print_r($model->getErrors());
-                echo '</pre>';
-                exit;
-            }
+            } else{
+                Yii::$app->session->setFlash('error', 'Ja existe um usuario com esse email ou matricula');
+            } 
         }
 
         return $this->render('create', ['model' => $model]);

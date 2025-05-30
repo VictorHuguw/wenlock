@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -13,23 +14,24 @@ $this->registerCssFile('@web/css/login-form.css', ['depends' => [\yii\bootstrap5
     </div>
     <div class="col-md-6">
         <div class="login-box">
-            <h1 class="mb-4 mt-3" style="color: #0290A4;"><strong>Bem-vindo!</strong></h1>
-            <p class="mb-4 "><strong>Entre com sua conta</strong></p>
+            <h1 class="mb-4 mt-3" style="color: #0290A4;font-size: 70px;"><strong>Bem-vindo!</strong></h1>
+            <p class="mb-4 " style="font-size: 30px;">Entre com sua conta</p>
             <?php $form = ActiveForm::begin(); ?>
-                <div class="form-group mb-3">
-                    <label>Email</label>
-                    <input type="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>Senha</label>
-                    <input type="password" name="senha" class="form-control" required>
-                </div>
-                <div class="form-group d-grid mb-3">
-                    <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
-                </div>
-                <div class="form-group text-center" style="color: #0290A4;">
-                    <?= Html::a('Criar Conta', ['auth/create'], ['class' => 'btn btn-link']) ?>
-                </div>
+            <div class="form-group mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group mb-4">
+                <label>Senha</label>
+                <input type="password" name="senha" class="form-control" required>
+            </div>
+            <div class="form-group d-grid mb-3">
+                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #0290A4;color:white;border:none;height: 60px;">Entrar</button>
+            </div>
+            <div class="form-group text-center mt-4">
+                <span class="auth-text-style"> <?= Html::a('Criar nova conta', ['auth/create']) ?>
+                </span>
+            </div>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

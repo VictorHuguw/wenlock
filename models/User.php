@@ -19,13 +19,14 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             [['nome', 'email', 'matricula', 'tipo'], 'required', 'message' => '* Campo obrigatório'],
             [['email'], 'email', 'message' => '* Insira um email válido'],
-            [['email', 'matricula'], 'unique'],
+            ['email', 'unique', 'message' => 'Ja existe um usuario com esse email'],
+            ['matricula', 'unique', 'message' => 'Ja existe um usuario com essa matricula'],
             [['nome', 'email', 'matricula', 'tipo'], 'string', 'max' => 255],
             ['nome', 'match', 'pattern' => '/^[\p{L}\s]+$/u', 'message' => '* O nome deve conter apenas letras.'],
-            [['senha', 'password_repeat'], 'required', 'on' => 'create'], 
+            [['senha', 'password_repeat'], 'required', 'on' => 'create'],
             [['senha', 'password_repeat'], 'string', 'min' => 6, 'max' => 255],
-            ['senha', 'match', 'pattern' => '/^[a-zA-Z0-9]{6,}$/', 'message' => '* A senha deve conter no mínimo 6 caracteres alfanuméricos.', 'skipOnEmpty' => true], 
-            ['password_repeat', 'compare', 'compareAttribute' => 'senha', 'message' => '* Senhas não conferem.', 'skipOnEmpty' => true], 
+            ['senha', 'match', 'pattern' => '/^[a-zA-Z0-9]{6,}$/', 'message' => '* A senha deve conter no mínimo 6 caracteres alfanuméricos.', 'skipOnEmpty' => true],
+            ['password_repeat', 'compare', 'compareAttribute' => 'senha', 'message' => '* Senhas não conferem.', 'skipOnEmpty' => true],
         ];
     }
 

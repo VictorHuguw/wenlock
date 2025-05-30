@@ -14,12 +14,15 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 
 <head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 
 <style>
-    body{
+    body {
         background-color: #F3F3F3;
     }
 </style>
@@ -28,34 +31,39 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
     <?php if (!Yii::$app->user->isGuest): ?>
-        <nav id="sidebar" class="text-white p-3 vh-100" style="width: 250px; position: fixed; background-color: #0D1931;">
-            <h1 class="text-center">WenLock.</h1>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link text-white active d-flex align-items-center" href="<?= Url::to(['/home']) ?>">
-                        <i class="fa-solid fa-house me-2"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white active d-flex align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#accessControlSubmenu">
-                        <i class="fa-solid fa-address-card me-2"></i> Controle de Acesso <span class="ms-2">&#9660;</span>
-                    </a>
-                    <div class="collapse" id="accessControlSubmenu">
-                        <ul class="nav flex-column ms-3">
-                            <li class="nav-item">
-                                <a class="nav-link text-white active d-flex align-items-center" href="<?= Url::to(['/user/index']) ?>">
-                                    <i class="fa-solid fa-users me-2"></i>Usuários
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+        <nav id="sidebar" class="d-flex flex-column text-white p-3" style="width: 30vh; background-color: #0D1931; height: 100vh;">
+            <h1 style="font-size: 50px;margin-left:40px"><b style="color: #00b4c0;">Wen</b><span style="color: white">Lock</span><span style="color: #00b4c0;font-size:80px">.</span></h1>
 
+            <div class="menu-items flex-grow-1">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white active d-flex align-items-center mt-4" href="<?= Url::to(['/home']) ?>" style="font-size: 20px;">
+                            <i class="fa-solid fa-house me-2"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active d-flex align-items-center mt-2" href="#" data-bs-toggle="collapse" data-bs-target="#accessControlSubmenu" style="font-size: 20px;">
+                            <i class="fa-solid fa-address-card me-2"></i> Controle de Acesso <span class="ms-2">&#9660;</span>
+                        </a>
+                        <div class="collapse" id="accessControlSubmenu">
+                            <ul class="nav flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white active d-flex align-items-center" href="<?= Url::to(['/user/index']) ?>" style="font-size: 20px;">
+                                        <i class="fa-solid fa-users me-2"></i>Usuários
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div></div>
+            </div>
+            
+            <hr>
             <div class="mt-auto">
                 <?= Html::beginForm(['/site/logout']) .
                     Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->email . ')',
+                        'Sair (' . Yii::$app->user->identity->email . ')',
                         ['class' => 'btn btn-outline-light w-100 logout']
                     ) .
                     Html::endForm(); ?>
@@ -63,7 +71,7 @@ AppAsset::register($this);
         </nav>
     <?php endif; ?>
 
-    <div class="flex-grow-1" style="<?= Yii::$app->user->isGuest ? '' : 'margin-left: 250px;' ?>">
+    <div class="flex-grow-1">
         <main class="p-4">
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>

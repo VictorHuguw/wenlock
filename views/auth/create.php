@@ -17,7 +17,7 @@ $this->registerJsFile('@web/js/validate-create-user-form.js', ['depends' => [Yii
     <div class="col-md-6">
         <div class="login-box">
             <h1 class="text-center mb-4" style="color: #0290A4;"><strong>Cadastro de Usuário</strong></h1>
-            <p class="text-center mb-4"><strong>Preencha os dados para criar sua conta</strong></p>
+            <p class="text-center mb-4" style="font-size: 20px;">Preencha os dados para criar sua conta</p>
 
             <?php $form = ActiveForm::begin(); ?>
             <div class="form-group mb-3">
@@ -68,12 +68,13 @@ $this->registerJsFile('@web/js/validate-create-user-form.js', ['depends' => [Yii
                 )->label(false) ?>
             </div>
 
-            <div class="form-group d-grid mb-3">
-                <?= Html::submitButton('Cadastrar', ['class' => 'btn btn-primary btn-lg']) ?>
+            <div class="form-group d-grid mb-3" >
+                <?= Html::submitButton('Cadastrar', ['class' => 'btn btn-secondary btn-lg','style'=>'background-color: #0290A4;color:white;border:none']) ?>
             </div>
 
-            <div class="form-group text-center">
-                <?= Html::a('Voltar para login', ['auth/login'], ['class' => 'btn btn-link']) ?>
+            <div class="form-group text-center mt-4">
+                <span class="auth-text-style"> <?= Html::a('Voltar para login', ['auth/login']) ?>
+                </span>
             </div>
             <?php ActiveForm::end(); ?>
 
