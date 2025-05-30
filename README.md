@@ -10,33 +10,6 @@ Projeto desenvolvido para o processo seletivo do cargo de desenvolvedor full sta
 
  ![login](assets/login.png)
 
-
-Estrutura de diretórios e arquivos criados
--------------------
-
-      assets/              
-      commands/           
-      config/            
-      controllers/        
-                AuthController.php      
-                HomeController.php       
-                SiteController.php      
-                UserController.php     
-      mail/                
-      models/   
-                User.php
-                UserSearch.php           
-      runtime/            
-      tests/              
-      vendor/             
-      views/              
-                auth
-                home
-                user
-                layouts
-      web/             
-
-
 Requisitos para rodar o projeto
 ------------
 
