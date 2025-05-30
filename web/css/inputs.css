@@ -1,0 +1,68 @@
+.custom-input-style {
+  background-color: #f3f3f3;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  color: #495057;
+  line-height: 1.5;
+  height: 60px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-input-style:focus {
+  border: none;
+}
+
+.custom-input-style {
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  color: #495057;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-input-style:focus {
+  color: #495057;
+  background-color: #f3f3f3;
+  border-color: #007bff;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-input-style::placeholder {
+  color: #6c757d;
+  opacity: 1;
+  font-size: 1.25rem;
+}
+
+.custom-password-input .form-control {
+  border-right: none;
+}
+
+.custom-eye-button {
+  background-color: #f3f3f3;
+  border: none;
+  border-left: none;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  color: #495057;
+  font-size: 1.25rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.custom-password-input:focus-within .custom-eye-button {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  z-index: 3;
+}
+
+.custom-password-input:focus-within .form-control {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}

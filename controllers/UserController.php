@@ -96,6 +96,7 @@ class UserController extends Controller
         $model->setScenario('create');
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                 Yii::$app->session->setFlash('success', 'Usuario criado com sucesso');
                 return $this->redirect(['user/list']);
             }
         } else {
@@ -140,6 +141,7 @@ class UserController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Usuario atualizado com sucesso!');
                 return $this->redirect(['user/list']);
             }
         } else{
