@@ -9,6 +9,8 @@
 Projeto desenvolvido para o processo seletivo do cargo de desenvolvedor full stack do instituto Conecthus
 
  ![login](assets/login.png)
+ ![nova conta](assets/nova-conta.png)
+ ![home](assets/home.png)
 
 Requisitos para rodar o projeto
 ------------
