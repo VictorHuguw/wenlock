@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\UserSearch;
 use Yii;
 use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -92,10 +93,10 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-
+        $model->setScenario('create');
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['user/list']);
             }
         } else {
             $model->loadDefaultValues();
@@ -104,6 +105,25 @@ class UserController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionViewAjax($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = User::findOne($id);
+
+        if ($model) {
+            return [
+                'nome' => $model->nome,
+                'matricula' => $model->matricula,
+                'email' => $model->email,
+                'created_at' => Yii::$app->formatter->asDatetime($model->created_at, 'php:d/m/Y H:i'),
+                'updated_at' => $model->updated_at ? Yii::$app->formatter->asDatetime($model->updated_at, 'php:d/m/Y H:i') : 'Nenhuma',
+            ];
+        }
+
+        return ['error' => 'Usuário não encontrado'];
     }
 
     /**
@@ -116,9 +136,15 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->setScenario('update');  
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['user/list']);
+            }
+        } else{
+            $model->senha = '';
+            $model->password_repeat = '';
         }
 
         return $this->render('update', [

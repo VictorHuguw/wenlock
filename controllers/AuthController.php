@@ -1,4 +1,5 @@
 <?php
+
 namespace app\controllers;
 
 use Yii;
@@ -20,7 +21,6 @@ class AuthController extends Controller
                 Yii::$app->user->login($user);
                 Yii::$app->session->setFlash('success', 'Login realizado com sucesso!');
                 return $this->redirect(['home/index']);
-                
             } else {
                 Yii::$app->session->setFlash('error', 'E-mail ou senha inválidos.');
             }
@@ -33,12 +33,16 @@ class AuthController extends Controller
     {
         $model = new User();
         $this->layout = 'guest';
-        
+
         if ($model->load(Yii::$app->request->post())) {
-            $model->setPassword($model->senha);
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Usuário criado com sucesso.');
                 return $this->redirect(['login']);
+            } else {
+                echo '<pre>';
+                print_r($model->getErrors());
+                echo '</pre>';
+                exit;
             }
         }
 

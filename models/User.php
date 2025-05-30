@@ -1,5 +1,7 @@
 <?php
+
 namespace app\models;
+
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -15,31 +17,43 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['nome', 'email', 'senha', 'matricula', 'tipo'], 'required','message' => '* Campo obrigatório'],
-            [['email'], 'email'],
+            [['nome', 'email', 'matricula', 'tipo'], 'required', 'message' => '* Campo obrigatório'],
+            [['email'], 'email', 'message' => '* Insira um email válido'],
             [['email', 'matricula'], 'unique'],
             [['nome', 'email', 'matricula', 'tipo'], 'string', 'max' => 255],
-
-            
-            [['senha', 'password_repeat'], 'required', 'on' => 'create'], // Ambas obrigatórias SOMENTE na criação
-            [['senha', 'password_repeat'], 'string', 'min' => 6, 'max' => 255], // Exemplo de comprimento
-
-            // Esta é a regra CRUCIAL para comparar as duas senhas
-            ['password_repeat', 'compare', 'compareAttribute' => 'senha', 'message' => "Senhas não conferem."],
+            ['nome', 'match', 'pattern' => '/^[\p{L}\s]+$/u', 'message' => '* O nome deve conter apenas letras.'],
+            [['senha', 'password_repeat'], 'required', 'on' => 'create'], 
+            [['senha', 'password_repeat'], 'string', 'min' => 6, 'max' => 255],
+            ['senha', 'match', 'pattern' => '/^[a-zA-Z0-9]{6,}$/', 'message' => '* A senha deve conter no mínimo 6 caracteres alfanuméricos.', 'skipOnEmpty' => true], 
+            ['password_repeat', 'compare', 'compareAttribute' => 'senha', 'message' => '* Senhas não conferem.', 'skipOnEmpty' => true], 
         ];
+    }
+
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+
+        $scenarios['create'] = ['nome', 'email', 'senha', 'password_repeat', 'matricula', 'tipo'];
+
+        $scenarios['update'] = ['nome', 'email', 'matricula', 'tipo', 'senha', 'password_repeat'];
+
+        return $scenarios;
     }
 
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($insert || $this->isAttributeChanged('senha')) {
-                if (!empty($this->senha)) {
-                    $this->senha = Yii::$app->security->generatePasswordHash($this->senha);
+            if (!empty($this->senha) && trim($this->senha) !== '') {
+                $this->senha = Yii::$app->security->generatePasswordHash($this->senha);
+            } else {
+                if (!$insert) {
+                    $this->senha = $this->getOldAttribute('senha');
                 }
             }
-            return true; 
+            return true;
         }
-        return false; 
+        return false;
     }
 
     public static function findIdentity($id)

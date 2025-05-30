@@ -18,8 +18,8 @@ yii.confirm = function (message, okCallback, cancelCallback) {
         cancelButtonText: 'Não',
         reverseButtons: true,
         customClass: {
-            confirmButton: 'btn btn-info ms-2',
-            cancelButton: 'btn btn-outline-secondary me-2'
+            confirmButton: 'btn btn-info btn-lg ms-2',
+            cancelButton: 'btn btn-outline-secondary btn-lg me-2'
         },
         buttonsStyling: false,
     }).then((result) => {

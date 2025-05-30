@@ -1,47 +1,38 @@
- body {
-        background-color: #F3F3F3;
-        /* Cor de fundo clara para a página */
-    }
+body {
+  background-color: #f3f3f3;
+}
 
-    /* Estilos para o card principal */
-    .user-list-card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+.user-list-card {
+  min-height: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
-    /* Estilos para o cabeçalho da tabela */
-    .user-list-card .table thead th {
-        background-color: #0D1931;
-        /* Cor de fundo escura do cabeçalho */
-        color: white;
-        /* Cor do texto do cabeçalho */
-        border-bottom: none;
-        /* Remover borda inferior padrão */
-    }
 
-    /* Estilos para as linhas da tabela */
-    .user-list-card .table tbody tr {
-        border-bottom: 1px solid #e0e0e0;
-        /* Borda sutil entre as linhas */
-    }
+.user-list-card .table thead th {
+  background-color: #0d1931;
+  color: white;
+  border-bottom: none;
+}
 
-    .user-list-card .table tbody tr:last-child {
-        border-bottom: none;
-        /* Remover borda da última linha */
-    }
+.user-list-card .table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
 
-    /* Ajuste para o campo de pesquisa (se as classes bootstrap não forem suficientes) */
-    .search-input-group .form-control {
-        border-radius: 0.25rem;
-        /* Padrão do Bootstrap */
-        /* Altura padrão para alinhar com botões, se necessário: */
-        /* height: calc(2.25rem + 2px); */
-    }
+.user-list-card .table tbody tr:last-child {
+  border-bottom: none;
+}
 
-    .search-input-group .input-group-text {
-        background-color: #fff;
-        border-right: none;
-        border-radius: 0.25rem 0 0 0.25rem;
-    }
+.search-input-group .form-control {
+  border-radius: 0.25rem;
+}
+
+.search-input-group .input-group-text {
+  background-color: #fff;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+}

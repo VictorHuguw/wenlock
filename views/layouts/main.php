@@ -1,19 +1,12 @@
 <?php
 
 use app\assets\AppAsset;
-use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
+use app\widgets\ToastrFlash;
 
 AppAsset::register($this);
-
-$this->registerCsrfMetaTags();
-$this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
-$this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
-$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
-
-$this->registerCssFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css");
-$this->registerJsFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js");
 
 ?>
 <?php $this->beginPage() ?>
@@ -21,11 +14,15 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boot
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
+<style>
+    body{
+        background-color: #F3F3F3;
+    }
+</style>
 
 <body style="display: flex; flex-direction: row; height: 100vh;">
     <?php $this->beginBody() ?>
@@ -35,7 +32,7 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boot
             <h1 class="text-center">WenLock.</h1>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link text-white active d-flex align-items-center" href="/home">
+                    <a class="nav-link text-white active d-flex align-items-center" href="<?= Url::to(['/home']) ?>">
                         <i class="fa-solid fa-house me-2"></i> Home
                     </a>
                 </li>
@@ -46,11 +43,10 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boot
                     <div class="collapse" id="accessControlSubmenu">
                         <ul class="nav flex-column ms-3">
                             <li class="nav-item">
-                                <a class="nav-link text-white active d-flex align-items-center" href="/user/list">
+                                <a class="nav-link text-white active d-flex align-items-center" href="<?= Url::to(['/user/index']) ?>">
                                     <i class="fa-solid fa-users me-2"></i>Usuários
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </li>
@@ -72,10 +68,61 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boot
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?php endif ?>
-            <?= Alert::widget() ?>
             <?= $content ?>
         </main>
     </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="userOffcanvas" aria-labelledby="userOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="userOffcanvasLabel">Detalhes do Usuário</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-flex align-items-center mb-3 mt-0">
+                <h6 class="text-muted text-uppercase mb-0 me-3">Dados do Usuário</h6>
+                <hr class="flex-grow-1 my-0" style="border-top: 1px solid #e0e0e0;">
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <p class="text-muted mb-0">Nome</p>
+                    <p class="fw-bold fs-5" id="userName">Carregando...</p>
+                </div>
+                <div class="col-6">
+                    <p class="text-muted mb-0">Matrícula</p>
+                    <p class="fw-bold fs-5" id="userMatricula">Carregando...</p>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <p class="text-muted mb-0">E-mail</p>
+                    <p class="fw-bold fs-5" id="userEmail">Carregando...</p>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center mb-3 mt-4">
+                <h6 class="text-muted text-uppercase mb-0 me-3">Detalhes</h6>
+                <hr class="flex-grow-1 my-0" style="border-top: 1px solid #e0e0e0;">
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-6">
+                    <p class="text-muted mb-0">Data de criação</p>
+                    <p class="fw-bold fs-5" id="userDataCriacao">Carregando...</p>
+                </div>
+                <div class="col-6">
+                    <p class="text-muted mb-0">Última edição</p>
+                    <p class="fw-bold fs-5" id="userUltimaEdicao">Carregando...</p>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-footer text-center py-3 border-top">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Fechar</button>
+        </div>
+    </div>
+
+    <?= ToastrFlash::widget() ?>
 
     <?php $this->endBody() ?>
 </body>

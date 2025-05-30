@@ -21,11 +21,17 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
     ];
     public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js',
+        'https://cdn.jsdelivr.net/npm/sweetalert2@11',
     ];
-    public $depends = [
+   public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset'
+        'yii\web\JqueryAsset', 
+        'yii\bootstrap5\BootstrapAsset', 
+        'yii\bootstrap5\BootstrapPluginAsset', 
     ];
 }
